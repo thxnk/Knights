@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="EditCoWorkerWindow">
+  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="15" left="15" bottom="15" right="15"/>
+    <constraints>
+      <xy x="19" y="20" width="1047" height="645"/>
+    </constraints>
+    <properties>
+      <background color="-15566010"/>
+    </properties>
+    <clientProperties>
+      <html.disable class="java.lang.Boolean" value="false"/>
+    </clientProperties>
+    <border type="none"/>
+    <children>
+      <grid id="250f3" binding="buttonsPanel" layout-manager="GridLayoutManager" row-count="9" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="10" left="5" bottom="10" right="5"/>
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="0" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16739451"/>
+          <enabled value="true"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="7509f" class="javax.swing.JButton" binding="addButton">
+            <constraints>
+              <grid row="8" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-16740093"/>
+              <horizontalAlignment value="0"/>
+              <text value="Додати"/>
+            </properties>
+          </component>
+          <component id="c2797" class="javax.swing.JButton" binding="deleteButton">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-4390902"/>
+              <foreground color="-16777216"/>
+              <text value="Видалити"/>
+            </properties>
+          </component>
+          <component id="f1a53" class="javax.swing.JTextField" binding="lastTextField">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <horizontalAlignment value="0"/>
+              <text value="Прізвище:"/>
+            </properties>
+          </component>
+          <component id="8d2fc" class="javax.swing.JTextField" binding="nameTextField">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <horizontalAlignment value="0"/>
+              <text value="Імя:"/>
+            </properties>
+          </component>
+          <component id="b0313" class="javax.swing.JTextField" binding="fatherTextField">
+            <constraints>
+              <grid row="4" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <horizontalAlignment value="0"/>
+              <text value="По батькові:"/>
+            </properties>
+          </component>
+          <component id="f2c43" class="javax.swing.JRadioButton" binding="manRadioButton">
+            <constraints>
+              <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="167" height="20"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-16739451"/>
+              <enabled value="true"/>
+              <foreground color="-16777216"/>
+              <horizontalAlignment value="0"/>
+              <text value="чоловіча"/>
+            </properties>
+          </component>
+          <component id="6a484" class="javax.swing.JTextField" binding="dayTextField">
+            <constraints>
+              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                <preferred-size width="86" height="30"/>
+              </grid>
+            </constraints>
+            <properties>
+              <horizontalAlignment value="0"/>
+              <text value="день"/>
+            </properties>
+          </component>
+          <component id="58dbf" class="javax.swing.JTextField" binding="monthTextField">
+            <constraints>
+              <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                <preferred-size width="86" height="30"/>
+              </grid>
+            </constraints>
+            <properties>
+              <horizontalAlignment value="0"/>
+              <text value="місяць"/>
+            </properties>
+          </component>
+          <component id="7563c" class="javax.swing.JTextField" binding="yearTextField">
+            <constraints>
+              <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                <preferred-size width="86" height="30"/>
+              </grid>
+            </constraints>
+            <properties>
+              <horizontalAlignment value="0"/>
+              <text value="рік"/>
+            </properties>
+          </component>
+          <component id="5f894" class="javax.swing.JRadioButton" binding="womanRadioButton">
+            <constraints>
+              <grid row="6" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="153" height="20"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-16739451"/>
+              <enabled value="true"/>
+              <foreground color="-16777216"/>
+              <horizontalAlignment value="0"/>
+              <text value="жіноча"/>
+            </properties>
+          </component>
+          <component id="907f6" class="javax.swing.JTextField" binding="IDTextField" default-binding="true">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="30"/>
+              </grid>
+            </constraints>
+            <properties>
+              <text value="ID:"/>
+            </properties>
+          </component>
+          <component id="483f0" class="javax.swing.JTextField" binding="emailTextField" default-binding="true">
+            <constraints>
+              <grid row="7" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <horizontalAlignment value="0"/>
+              <text value="Email"/>
+            </properties>
+          </component>
+          <component id="e3463" class="javax.swing.JLabel" binding="labelgroup">
+            <constraints>
+              <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="86" height="16"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-1709330"/>
+              <font name="Arial Rounded MT Bold" size="18"/>
+              <foreground color="-16777216"/>
+              <horizontalAlignment value="0"/>
+              <text value="СТАТЬ"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="855e2" binding="tablePanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16739451"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <scrollpane id="be64b" binding="scrollPanel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-8413810"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="5522b" class="javax.swing.JTable" binding="table1" default-binding="true">
+                <constraints/>
+                <properties>
+                  <background color="-15165374"/>
+                  <font size="12"/>
+                  <foreground color="-16777216"/>
+                  <gridColor color="-16777216"/>
+                </properties>
+              </component>
+            </children>
+          </scrollpane>
+        </children>
+      </grid>
+    </children>
+  </grid>
+  <buttonGroups>
+    <group name="genderGroup">
+      <member id="f2c43"/>
+      <member id="5f894"/>
+    </group>
+  </buttonGroups>
+</form>

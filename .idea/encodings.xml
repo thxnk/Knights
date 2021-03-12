@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/src/main/java/EditCoWorkerWindow.form" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/EditCoWorkerWindow.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/EditWindow.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/EmailSender.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Main.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/MainWindow.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/SQLFunctions.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/editGreetingsMenu.java" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>
