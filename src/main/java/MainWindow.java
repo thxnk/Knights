@@ -14,6 +14,7 @@ public class MainWindow extends JFrame implements ActionListener {
 
     private JButton sendButton = new JButton("Відправити");
     private JButton editButton = new JButton("Редагувати БД");
+    private JButton infoButton = new JButton();
     private JTable dbTable = new JTable();
     private DefaultTableModel dbModel;
     private JScrollPane jScrollPane1;
@@ -70,6 +71,7 @@ public class MainWindow extends JFrame implements ActionListener {
         sendButton.setBounds(550,190,150,50);
         sendButton.setFocusable(false);
 
+
         //ImageIcon sendIco = new ImageIcon("images/send.png");
         ImageIcon sendIco = new ImageIcon(getClass().getClassLoader().getResource("images/send.png"));
         Image img = sendIco.getImage() ;
@@ -80,6 +82,20 @@ public class MainWindow extends JFrame implements ActionListener {
 
         sendButton.setBackground(new Color(125, 187, 4));
         this.add(sendButton);
+
+        //infoButton
+        infoButton.addActionListener(this);
+        infoButton.setBounds(375,190,50,50);
+        infoButton.setFocusable(false);
+
+        ImageIcon infoIco = new ImageIcon(getClass().getClassLoader().getResource("images/info.png"));
+        Image infoimg = infoIco.getImage() ;
+        Image newinfoimg = infoimg.getScaledInstance( 25, 25,  Image.SCALE_SMOOTH ) ;
+        infoIco = new ImageIcon(newinfoimg);
+        infoButton.setIcon(infoIco);
+
+        infoButton.setBackground(new Color(125, 187, 4));
+        this.add(infoButton);
 
         //editButton
         editButton.addActionListener(this);
@@ -140,16 +156,40 @@ public class MainWindow extends JFrame implements ActionListener {
 
         if(actionEvent.getSource()==sendButton){
             System.out.println("Press!");
+            sendButton.setText("Відправлення...");
+            sendButton.setEnabled(false);
             sqlFunctions.sendGreetings(Integer.parseInt(day.format(date)), Integer.parseInt(month.format(date)));
             sendButton.setBackground(new Color(143, 255, 0));
             sendButton.setText("Відправлено!");
-            sendButton.setEnabled(false);
         }
 
         if(actionEvent.getSource()==editButton){
             System.out.println("Press edit button");
             EditWindow editWindow = new EditWindow();
             editWindow.setVisible(true);
+        }
+        if(actionEvent.getSource()==infoButton){
+            System.out.println("Press info button");
+            String infoText = "ППФК ДН\n\n" +
+                    "Програма створена на практиці з ТРПЗ\n\n" +
+                    "Команда Лицарі\n\n"+
+                    "Менеджер продукту:\n"+
+                    "Постолакі М.О.\n"+
+                    "Менеджер програми:\n"+
+                    "Грудін С.М.\n\n"+
+                    "Задоволення споживача:\n"+
+                    "Власенко Е..\n\n"+
+                    "Реліз менеджер:\n"+
+                    "Білокінь Т.І.\n\n"+
+                    "Тестувальник:\n"+
+                    "Швець Д.К.\n\n"+
+                    "Розробник:\n"+
+                    "Крячун Д.О.\n\n"+
+                    "2021 рік\n";
+            JFrame f = new JFrame();
+            JOptionPane.showMessageDialog(f, infoText, "Про програму", JOptionPane.INFORMATION_MESSAGE);
+
+
         }
     }
 }
