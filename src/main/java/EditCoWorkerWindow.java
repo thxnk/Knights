@@ -78,7 +78,12 @@ public class EditCoWorkerWindow extends JFrame {
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                if (isValid(spinner1.getValue() + "/" + spinner2.getValue() + "/" + spinner3.getValue()) && isValidEmailAddress(emailTextField.getText())) {
+                if (isValid(spinner1.getValue() + "/" + spinner2.getValue() + "/" + spinner3.getValue())
+                        && isValidEmailAddress(emailTextField.getText())
+                        && !lastTextField.getText().equals("")
+                        && !nameTextField.getText().equals("")
+                        && !fatherTextField.getText().equals("")) {
+
                     sqlFunctions.addPeople("people",
                             nameTextField.getText(),
                             lastTextField.getText(),
@@ -90,9 +95,21 @@ public class EditCoWorkerWindow extends JFrame {
                             emailTextField.getText()
                     );
                     updateTable(tableModel);
+                } else if (nameTextField.getText().equals("")) {
+                    JFrame f = new JFrame();
+                    JOptionPane.showMessageDialog(f, "Заповніть імя!", "Увага!", JOptionPane.WARNING_MESSAGE);
+                } else if (lastTextField.getText().equals("")) {
+                    JFrame f = new JFrame();
+                    JOptionPane.showMessageDialog(f, "Заповніть призвіще!", "Увага!", JOptionPane.WARNING_MESSAGE);
+                } else if (fatherTextField.getText().equals("")) {
+                    JFrame f = new JFrame();
+                    JOptionPane.showMessageDialog(f, "Заповніть по-батькові!", "Увага!", JOptionPane.WARNING_MESSAGE);
+                } else if (!(isValidEmailAddress(emailTextField.getText()))) {
+                    JFrame f = new JFrame();
+                    JOptionPane.showMessageDialog(f, "Email заповнено не коректно!", "Увага!", JOptionPane.WARNING_MESSAGE);
                 } else {
                     JFrame f = new JFrame();
-                    JOptionPane.showMessageDialog(f, "Дату народження чи Email введенно некоректно!", "Увага!", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(f, "Дату народження введено некоректно!", "Увага!", JOptionPane.WARNING_MESSAGE);
                 }
             }
         });
@@ -160,35 +177,20 @@ public class EditCoWorkerWindow extends JFrame {
         deleteButton.setForeground(new Color(-16777216));
         deleteButton.setText("Видалити");
         buttonsPanel.add(deleteButton, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 6, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(87, 16), null, 0, false));
-        manRadioButton = new JRadioButton();
-        manRadioButton.setBackground(new Color(-16737636));
-        manRadioButton.setEnabled(true);
-        manRadioButton.setForeground(new Color(-16777216));
-        manRadioButton.setHorizontalAlignment(0);
-        manRadioButton.setText("чоловіча");
-        buttonsPanel.add(manRadioButton, new com.intellij.uiDesigner.core.GridConstraints(6, 0, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(100, 20), null, 0, false));
         womanRadioButton = new JRadioButton();
         womanRadioButton.setBackground(new Color(-16737636));
         womanRadioButton.setEnabled(true);
         womanRadioButton.setForeground(new Color(-16777216));
         womanRadioButton.setHorizontalAlignment(0);
         womanRadioButton.setText("жіноча");
-        buttonsPanel.add(womanRadioButton, new com.intellij.uiDesigner.core.GridConstraints(6, 4, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(100, 20), null, 0, false));
+        buttonsPanel.add(womanRadioButton, new com.intellij.uiDesigner.core.GridConstraints(6, 4, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(80, 20), null, 0, false));
         IDTextField = new JTextField();
         IDTextField.setText("");
-        buttonsPanel.add(IDTextField, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(60, 20), null, 0, false));
-        labelgroup = new JLabel();
-        labelgroup.setBackground(new Color(-1709330));
-        Font labelgroupFont = this.$$$getFont$$$("Bahnschrift", -1, 16, labelgroup.getFont());
-        if (labelgroupFont != null) labelgroup.setFont(labelgroupFont);
-        labelgroup.setForeground(new Color(-16777216));
-        labelgroup.setHorizontalAlignment(0);
-        labelgroup.setText("Стать");
-        buttonsPanel.add(labelgroup, new com.intellij.uiDesigner.core.GridConstraints(6, 2, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(86, 16), null, 0, false));
+        buttonsPanel.add(IDTextField, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 4, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(60, 20), null, 0, false));
         spinner2 = new JSpinner();
-        buttonsPanel.add(spinner2, new com.intellij.uiDesigner.core.GridConstraints(5, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(70, 40), new Dimension(70, 40), null, 0, false));
+        buttonsPanel.add(spinner2, new com.intellij.uiDesigner.core.GridConstraints(5, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(50, 40), new Dimension(50, 40), null, 0, false));
         spinner3 = new JSpinner();
-        buttonsPanel.add(spinner3, new com.intellij.uiDesigner.core.GridConstraints(5, 5, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(100, 40), new Dimension(100, 40), null, 0, false));
+        buttonsPanel.add(spinner3, new com.intellij.uiDesigner.core.GridConstraints(5, 5, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(70, 40), new Dimension(70, 40), null, 0, false));
         final JLabel label1 = new JLabel();
         Font label1Font = this.$$$getFont$$$("Bahnschrift", -1, 16, label1.getFont());
         if (label1Font != null) label1.setFont(label1Font);
@@ -204,7 +206,7 @@ public class EditCoWorkerWindow extends JFrame {
         lastTextField = new JTextField();
         lastTextField.setHorizontalAlignment(0);
         lastTextField.setText("");
-        buttonsPanel.add(lastTextField, new com.intellij.uiDesigner.core.GridConstraints(2, 2, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        buttonsPanel.add(lastTextField, new com.intellij.uiDesigner.core.GridConstraints(2, 2, 1, 4, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JLabel label3 = new JLabel();
         Font label3Font = this.$$$getFont$$$("Bahnschrift", -1, 16, label3.getFont());
         if (label3Font != null) label3.setFont(label3Font);
@@ -220,13 +222,13 @@ public class EditCoWorkerWindow extends JFrame {
         fatherTextField = new JTextField();
         fatherTextField.setHorizontalAlignment(0);
         fatherTextField.setText("");
-        buttonsPanel.add(fatherTextField, new com.intellij.uiDesigner.core.GridConstraints(4, 2, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        buttonsPanel.add(fatherTextField, new com.intellij.uiDesigner.core.GridConstraints(4, 2, 1, 4, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         nameTextField = new JTextField();
         nameTextField.setHorizontalAlignment(0);
         nameTextField.setText("");
-        buttonsPanel.add(nameTextField, new com.intellij.uiDesigner.core.GridConstraints(3, 2, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        buttonsPanel.add(nameTextField, new com.intellij.uiDesigner.core.GridConstraints(3, 2, 1, 4, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         spinner1 = new JSpinner();
-        buttonsPanel.add(spinner1, new com.intellij.uiDesigner.core.GridConstraints(5, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(70, 40), new Dimension(70, 40), null, 0, false));
+        buttonsPanel.add(spinner1, new com.intellij.uiDesigner.core.GridConstraints(5, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(50, 40), new Dimension(50, 40), null, 0, false));
         final JLabel label5 = new JLabel();
         Font label5Font = this.$$$getFont$$$(null, -1, 12, label5.getFont());
         if (label5Font != null) label5.setFont(label5Font);
@@ -246,13 +248,28 @@ public class EditCoWorkerWindow extends JFrame {
         emailTextField = new JTextField();
         emailTextField.setHorizontalAlignment(0);
         emailTextField.setText("");
-        buttonsPanel.add(emailTextField, new com.intellij.uiDesigner.core.GridConstraints(7, 2, 1, 3, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        buttonsPanel.add(emailTextField, new com.intellij.uiDesigner.core.GridConstraints(7, 2, 1, 4, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JLabel label8 = new JLabel();
         Font label8Font = this.$$$getFont$$$("Bahnschrift", -1, 16, label8.getFont());
         if (label8Font != null) label8.setFont(label8Font);
         label8.setForeground(new Color(-16777216));
         label8.setText("Email:");
         buttonsPanel.add(label8, new com.intellij.uiDesigner.core.GridConstraints(7, 0, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        labelgroup = new JLabel();
+        labelgroup.setBackground(new Color(-1709330));
+        Font labelgroupFont = this.$$$getFont$$$("Bahnschrift", -1, 16, labelgroup.getFont());
+        if (labelgroupFont != null) labelgroup.setFont(labelgroupFont);
+        labelgroup.setForeground(new Color(-16777216));
+        labelgroup.setHorizontalAlignment(0);
+        labelgroup.setText("Стать");
+        buttonsPanel.add(labelgroup, new com.intellij.uiDesigner.core.GridConstraints(6, 0, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(86, 16), null, 0, false));
+        manRadioButton = new JRadioButton();
+        manRadioButton.setBackground(new Color(-16737636));
+        manRadioButton.setEnabled(true);
+        manRadioButton.setForeground(new Color(-16777216));
+        manRadioButton.setHorizontalAlignment(0);
+        manRadioButton.setText("чоловіча");
+        buttonsPanel.add(manRadioButton, new com.intellij.uiDesigner.core.GridConstraints(6, 2, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(80, 20), null, 0, false));
         tablePanel = new JPanel();
         tablePanel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         tablePanel.setBackground(new Color(-16739451));
@@ -261,7 +278,7 @@ public class EditCoWorkerWindow extends JFrame {
         scrollPanel.setBackground(new Color(-8413810));
         tablePanel.add(scrollPanel, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         table1 = new JTable();
-        table1.setBackground(new Color(-15165374));
+        table1.setBackground(new Color(-6688852));
         Font table1Font = this.$$$getFont$$$(null, -1, 12, table1.getFont());
         if (table1Font != null) table1.setFont(table1Font);
         table1.setForeground(new Color(-16777216));

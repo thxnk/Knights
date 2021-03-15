@@ -87,21 +87,9 @@ public class editGreetingsMenu extends javax.swing.JFrame {
         jTextField1.setText("Напишіть"+ (gender == "M"?" чоловіче":" жіноче")+" привітання");
         jTextField1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
             }
         });
 
-        jTextField1.addFocusListener(new FocusListener(){
-            @Override
-            public void focusGained(FocusEvent e){
-                jTextField1.setText("");
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-
-            }
-        });
 
         GroupLayout jPanel2Layout = new GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -214,8 +202,14 @@ public class editGreetingsMenu extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        sqlFunctions.addGratter((this.gender == "M"?"m_gratters":"w_gratters"), jTextField1.getText());
-        updateTable(tableModel);
+        if(!jTextField1.getText().equals("")) {
+            sqlFunctions.addGratter((this.gender == "M" ? "m_gratters" : "w_gratters"), jTextField1.getText());
+            updateTable(tableModel);
+        }
+        else {
+            JFrame f = new JFrame();
+            JOptionPane.showMessageDialog(f, "Введіть привітання!", "Увага!", JOptionPane.WARNING_MESSAGE);
+        }
     }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -224,10 +218,6 @@ public class editGreetingsMenu extends javax.swing.JFrame {
         updateTable(tableModel);
     }
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-        jTextField1.setText("");
-    }
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
