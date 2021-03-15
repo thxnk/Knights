@@ -1,9 +1,14 @@
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.awt.event.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 public class EditCoWorkerWindow extends JFrame {
@@ -167,17 +172,22 @@ public class EditCoWorkerWindow extends JFrame {
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                sqlFunctions.addPeople("people",
-                        nameTextField.getText(),
-                        lastTextField.getText(),
-                        fatherTextField.getText(),
-                        (manRadioButton.isSelected() ? "M" : "W"),
-                        Integer.parseInt(dayTextField.getText()),
-                        Integer.parseInt(monthTextField.getText()),
-                        Integer.parseInt(yearTextField.getText()),
-                        emailTextField.getText()
-                );
-                updateTable(tableModel);
+                if (isValid((Integer.parseInt(dayTextField.getText())) + "/" + (Integer.parseInt(monthTextField.getText())) + "/" + (Integer.parseInt(yearTextField.getText()))) && isValidEmailAddress(emailTextField.getText())) {
+                    sqlFunctions.addPeople("people",
+                            nameTextField.getText(),
+                            lastTextField.getText(),
+                            fatherTextField.getText(),
+                            (manRadioButton.isSelected() ? "M" : "W"),
+                            Integer.parseInt(dayTextField.getText()),
+                            Integer.parseInt(monthTextField.getText()),
+                            Integer.parseInt(yearTextField.getText()),
+                            emailTextField.getText()
+                    );
+                    updateTable(tableModel);
+                } else {
+                    JFrame f = new JFrame();
+                    JOptionPane.showMessageDialog(f, "Дату народження чи Email введенно некоректно!", "Увага!", JOptionPane.WARNING_MESSAGE);
+                }
             }
         });
     }
@@ -185,6 +195,28 @@ public class EditCoWorkerWindow extends JFrame {
     private void updateTable(DefaultTableModel model) {
         model.setRowCount(0);
         sqlFunctions.selectAllPeople("people", model);
+    }
+
+    public boolean isValid(String dateStr) {
+        DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        sdf.setLenient(false);
+        try {
+            sdf.parse(dateStr);
+        } catch (ParseException e) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean isValidEmailAddress(String email) {
+        boolean result = true;
+        try {
+            InternetAddress emailAddr = new InternetAddress(email);
+            emailAddr.validate();
+        } catch (AddressException ex) {
+            result = false;
+        }
+        return result;
     }
 
 
