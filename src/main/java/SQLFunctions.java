@@ -5,8 +5,8 @@ import java.sql.*;
 public class SQLFunctions extends javax.swing.JFrame {
 
 
-    private final static String DATABASE_URL = "jdbc:sqlite:D:/DB.sqlite";
-    //private final static String DATABASE_URL = "jdbc:sqlite:C:/Program Files (x86)/KnightsApps/DB.sqlite";
+    //private final static String DATABASE_URL = "jdbc:sqlite:D:/DB.sqlite";
+    private final static String DATABASE_URL = "jdbc:sqlite:C:/Program Files (x86)/KnightsApps/DB.sqlite";
     private EmailSender emailSender = new EmailSender();
 
     public Connection connect() {
