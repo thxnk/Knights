@@ -9,6 +9,9 @@ import java.awt.event.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Date;
 import java.util.Locale;
 
 public class EditCoWorkerWindow extends JFrame {
@@ -20,9 +23,6 @@ public class EditCoWorkerWindow extends JFrame {
     private JTextField fatherTextField;
     private JRadioButton manRadioButton;
     private JRadioButton womanRadioButton;
-    //    private JTextField dayTextField;
-//    private JTextField monthTextField;
-//    private JTextField yearTextField;
     private JTable table1;
     private DefaultTableModel tableModel;
     JPanel mainPanel;
@@ -35,6 +35,11 @@ public class EditCoWorkerWindow extends JFrame {
     private JSpinner spinner2;
     private JSpinner spinner3;
     private SQLFunctions sqlFunctions = new SQLFunctions();
+
+    private Date date = new Date();
+    private DateFormat day = new SimpleDateFormat("dd");
+    private DateFormat month = new SimpleDateFormat("MM");
+    private DateFormat year = new SimpleDateFormat("yyyy");
 
     public EditCoWorkerWindow() {
 
@@ -78,11 +83,25 @@ public class EditCoWorkerWindow extends JFrame {
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                LocalDate today = LocalDate.now();
+                LocalDate birthday;
+                Period p = Period.between(today, today);
+
+                if (isValid(spinner1.getValue() + "/" + spinner2.getValue() + "/" + spinner3.getValue())) {
+                    birthday = LocalDate.of((Integer) spinner3.getValue(), (Integer) spinner2.getValue(), (Integer) spinner1.getValue());
+                    p = Period.between(birthday, today);
+                }
+
                 if (isValid(spinner1.getValue() + "/" + spinner2.getValue() + "/" + spinner3.getValue())
+                        && p.getYears() >= 18
+                        && p.getYears() <= 90
                         && isValidEmailAddress(emailTextField.getText())
                         && !lastTextField.getText().equals("")
                         && !nameTextField.getText().equals("")
-                        && !fatherTextField.getText().equals("")) {
+                        && !fatherTextField.getText().equals("")
+                        && !lastTextField.getText().matches(".*\\d.*")
+                        && !nameTextField.getText().matches(".*\\d.*")
+                        && !fatherTextField.getText().matches(".*\\d.*")) {
 
                     sqlFunctions.addPeople("people",
                             nameTextField.getText(),
@@ -95,21 +114,21 @@ public class EditCoWorkerWindow extends JFrame {
                             emailTextField.getText()
                     );
                     updateTable(tableModel);
-                } else if (nameTextField.getText().equals("")) {
+                } else if (nameTextField.getText().equals("") || nameTextField.getText().matches(".*\\d.*")) {
                     JFrame f = new JFrame();
-                    JOptionPane.showMessageDialog(f, "Заповніть імя!", "Увага!", JOptionPane.WARNING_MESSAGE);
-                } else if (lastTextField.getText().equals("")) {
+                    JOptionPane.showMessageDialog(f, "Імя введено некоректно!!", "Увага!", JOptionPane.WARNING_MESSAGE);
+                } else if (lastTextField.getText().equals("") || lastTextField.getText().matches(".*\\d.*")) {
                     JFrame f = new JFrame();
-                    JOptionPane.showMessageDialog(f, "Заповніть призвіще!", "Увага!", JOptionPane.WARNING_MESSAGE);
-                } else if (fatherTextField.getText().equals("")) {
+                    JOptionPane.showMessageDialog(f, "Призвіще введено некоректно!!", "Увага!", JOptionPane.WARNING_MESSAGE);
+                } else if (fatherTextField.getText().equals("") || fatherTextField.getText().matches(".*\\d.*")) {
                     JFrame f = new JFrame();
-                    JOptionPane.showMessageDialog(f, "Заповніть по-батькові!", "Увага!", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(f, "По-батькові введено некоректно!!", "Увага!", JOptionPane.WARNING_MESSAGE);
                 } else if (!(isValidEmailAddress(emailTextField.getText()))) {
                     JFrame f = new JFrame();
-                    JOptionPane.showMessageDialog(f, "Email заповнено не коректно!", "Увага!", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(f, "Email введено не коректно!", "Увага!", JOptionPane.WARNING_MESSAGE);
                 } else {
                     JFrame f = new JFrame();
-                    JOptionPane.showMessageDialog(f, "Дату народження введено некоректно!", "Увага!", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(f, "Дату народження введено некоректно! \nЯкщо ви ввели все правильно,\nможливо працівнику ще немає 18, чи більше 90.", "Увага!", JOptionPane.WARNING_MESSAGE);
                 }
             }
         });
@@ -182,7 +201,7 @@ public class EditCoWorkerWindow extends JFrame {
         womanRadioButton.setEnabled(true);
         womanRadioButton.setForeground(new Color(-16777216));
         womanRadioButton.setHorizontalAlignment(0);
-        womanRadioButton.setText("жіноча");
+        womanRadioButton.setText("Жіноча");
         buttonsPanel.add(womanRadioButton, new com.intellij.uiDesigner.core.GridConstraints(6, 4, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(80, 20), null, 0, false));
         IDTextField = new JTextField();
         IDTextField.setText("");
@@ -261,14 +280,14 @@ public class EditCoWorkerWindow extends JFrame {
         if (labelgroupFont != null) labelgroup.setFont(labelgroupFont);
         labelgroup.setForeground(new Color(-16777216));
         labelgroup.setHorizontalAlignment(0);
-        labelgroup.setText("Стать");
+        labelgroup.setText("Стать:");
         buttonsPanel.add(labelgroup, new com.intellij.uiDesigner.core.GridConstraints(6, 0, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(86, 16), null, 0, false));
         manRadioButton = new JRadioButton();
         manRadioButton.setBackground(new Color(-16737636));
         manRadioButton.setEnabled(true);
         manRadioButton.setForeground(new Color(-16777216));
         manRadioButton.setHorizontalAlignment(0);
-        manRadioButton.setText("чоловіча");
+        manRadioButton.setText("Чоловіча");
         buttonsPanel.add(manRadioButton, new com.intellij.uiDesigner.core.GridConstraints(6, 2, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(80, 20), null, 0, false));
         tablePanel = new JPanel();
         tablePanel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));

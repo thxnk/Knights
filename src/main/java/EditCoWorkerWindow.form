@@ -57,7 +57,7 @@
               <enabled value="true"/>
               <foreground color="-16777216"/>
               <horizontalAlignment value="0"/>
-              <text value="жіноча"/>
+              <text value="Жіноча"/>
             </properties>
           </component>
           <component id="907f6" class="javax.swing.JTextField" binding="IDTextField" default-binding="true">
@@ -234,7 +234,7 @@
               <font name="Bahnschrift" size="16"/>
               <foreground color="-16777216"/>
               <horizontalAlignment value="0"/>
-              <text value="Стать"/>
+              <text value="Стать:"/>
             </properties>
           </component>
           <component id="f2c43" class="javax.swing.JRadioButton" binding="manRadioButton">
@@ -248,7 +248,7 @@
               <enabled value="true"/>
               <foreground color="-16777216"/>
               <horizontalAlignment value="0"/>
-              <text value="чоловіча"/>
+              <text value="Чоловіча"/>
             </properties>
           </component>
         </children>
